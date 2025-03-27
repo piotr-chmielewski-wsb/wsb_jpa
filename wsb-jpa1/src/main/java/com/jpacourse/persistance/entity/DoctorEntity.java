@@ -33,10 +33,17 @@ public class DoctorEntity {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	@OneToOne (
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY,
+			optional = false
+	)
+	@JoinColumn(name = "ADDRESS_ID")
+	private AddressEntity address;
 
 	public String getFirstName() {
 		return firstName;

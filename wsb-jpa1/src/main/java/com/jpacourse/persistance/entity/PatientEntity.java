@@ -12,6 +12,14 @@ public class PatientEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@OneToOne (
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY,
+			optional = false
+	)
+	@JoinColumn(name = "ADDRESS_ID")
+	private AddressEntity address;
+
 	@Column(nullable = false)
 	private String firstName;
 
