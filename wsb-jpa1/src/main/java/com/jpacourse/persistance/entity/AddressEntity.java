@@ -19,6 +19,7 @@ public class AddressEntity {
 
 	private String postalCode;
 
+	// relacja OneToOne dwustronna do PatientEntity
 	@OneToOne(mappedBy = "addressEntity")
 	private PatientEntity patientEntity;
 

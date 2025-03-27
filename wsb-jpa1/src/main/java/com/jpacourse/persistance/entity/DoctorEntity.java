@@ -37,6 +37,7 @@ public class DoctorEntity {
 		this.id = id;
 	}
 
+	// relacja OneToOne rodzica DoctorEntity do dziecka DddressEntity
 	@OneToOne (
 			cascade = CascadeType.ALL,
 			fetch = FetchType.LAZY,

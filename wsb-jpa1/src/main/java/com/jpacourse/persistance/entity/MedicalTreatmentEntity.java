@@ -18,6 +18,7 @@ public class MedicalTreatmentEntity {
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
+	// relacja ManyToOne rodzica MedicalTreatmentEntity do dziecka VisitEntity
 	@ManyToOne(
 			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER,

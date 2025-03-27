@@ -25,6 +25,7 @@ public class VisitEntity {
 	@Column(nullable = false)
 	private LocalDateTime time;
 
+	// relacja ManyToOne rodzica VisitEntity do dziecka PatientEntity
 	@ManyToOne(
 			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER,
