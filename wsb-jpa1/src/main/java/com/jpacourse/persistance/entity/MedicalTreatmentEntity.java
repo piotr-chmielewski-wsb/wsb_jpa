@@ -18,6 +18,14 @@ public class MedicalTreatmentEntity {
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
+	@ManyToOne(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,
+			optional = false
+	)
+	@JoinColumn(name = "visit_id")
+	private VisitEntity visitEntity;
+
 	public Long getId() {
 		return id;
 	}

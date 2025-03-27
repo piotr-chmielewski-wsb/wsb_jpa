@@ -19,6 +19,9 @@ public class AddressEntity {
 
 	private String postalCode;
 
+	@OneToOne(mappedBy = "addressEntity")
+	private PatientEntity patientEntity;
+
 	public Long getId() {
 		return id;
 	}

@@ -25,6 +25,14 @@ public class VisitEntity {
 	@Column(nullable = false)
 	private LocalDateTime time;
 
+	@ManyToOne(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,
+			optional = false
+	)
+	@JoinColumn(name = "patient_id")
+	private PatientEntity patientEntity;
+
 	public Long getId() {
 		return id;
 	}
