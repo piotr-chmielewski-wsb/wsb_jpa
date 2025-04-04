@@ -11,21 +11,18 @@ public class MedicalTreatmentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Column(nullable = false)
+	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
-
+	@Column(name = "TREATMENT_TYPE", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
-
-	// relacja ManyToOne rodzica MedicalTreatmentEntity do dziecka VisitEntity
 	@ManyToOne(
 			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER,
 			optional = false
 	)
-	@JoinColumn(name = "visit_id")
-	private VisitEntity visitEntity;
+	@JoinColumn(name = "VISIT_ID", referencedColumnName = "id") // relacja ManyToOne dwukierunkowa MedicalTreatmentEntity do VisitEntity
+	private VisitEntity visitEntityforMedicalTreatment;
 
 	public Long getId() {
 		return id;

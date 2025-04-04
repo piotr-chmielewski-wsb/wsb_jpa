@@ -1,6 +1,7 @@
 package com.jpacourse.persistance.entity;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import jakarta.persistence.*;
 
@@ -11,28 +12,26 @@ public class VisitEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@ManyToOne (
-			cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY,
-			optional = false
-	)
-	@JoinColumn(name = "DOCTOR_ID")
-	private DoctorEntity doctor;
-
+	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
-
-	@Column(nullable = false)
+	@Column(name = "TIME",nullable = false)
 	private LocalDateTime time;
-
-	// relacja ManyToOne rodzica VisitEntity do dziecka PatientEntity
 	@ManyToOne(
 			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER,
 			optional = false
 	)
-	@JoinColumn(name = "patient_id")
-	private PatientEntity patientEntity;
+	@JoinColumn(name = "PATIENT_ID", referencedColumnName = "id") // relacja ManyToOne dwukierunkowa VisitEntity do PatientEntity
+	private PatientEntity patientEntityForVisits;
+	@ManyToOne (
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,
+			optional = false
+	)
+	@JoinColumn(name = "DOCTOR_ID", referencedColumnName = "id")
+	private DoctorEntity doctorEntityForVisits;
+	@OneToMany(mappedBy = "visitEntityforMedicalTreatment")
+	private Collection<MedicalTreatmentEntity> medicalTreatmentEntityList;
 
 	public Long getId() {
 		return id;

@@ -4,6 +4,8 @@ import com.jpacourse.persistance.enums.Specialization;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
 @Table(name = "DOCTOR")
 public class DoctorEntity {
@@ -11,40 +13,34 @@ public class DoctorEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Column(nullable = false)
+	@Column(name = "FIRST_NAME",nullable = false)
 	private String firstName;
-
-	@Column(nullable = false)
+	@Column(name = "LAST_NAME",nullable = false)
 	private String lastName;
-
-	@Column(nullable = false)
+	@Column(name = "TELEPHONE_NUMBER",nullable = false)
 	private String telephoneNumber;
-
+	@Column(name = "EMAIL" ,nullable = false)
 	private String email;
-
-	@Column(nullable = false)
+	@Column(name = "DOCTOR_NUMBER" ,nullable = false)
 	private String doctorNumber;
-
-	@Column(nullable = false)
+	@Column(name = "SPECIALIZATION",nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
+	@OneToOne (cascade = CascadeType.ALL,
+			   fetch = FetchType.LAZY,
+			   optional = false)
+	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "id") // relacja OneToOne dwukierunkowa DoctorEntity z AddressEntity
+	private AddressEntity doctorAddress;
+	@OneToMany(mappedBy = "doctorEntityForVisits")
+	private Collection<VisitEntity> doctorVisits;
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	// relacja OneToOne rodzica DoctorEntity do dziecka DddressEntity
-	@OneToOne (
-			cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY,
-			optional = false
-	)
-	@JoinColumn(name = "ADDRESS_ID")
-	private AddressEntity address;
 
 	public String getFirstName() {
 		return firstName;

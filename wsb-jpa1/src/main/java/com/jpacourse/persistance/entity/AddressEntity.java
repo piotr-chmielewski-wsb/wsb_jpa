@@ -10,18 +10,18 @@ public class AddressEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	@Column(name = "CITY", nullable = false)
 	private String city;
-
+	@Column(name = "ADDRESS_LINE_1", nullable = false)
 	private String addressLine1;
-
+	@Column(name = "ADDRESS_LINE_2", nullable = false)
 	private String addressLine2;
-
+	@Column(name = "POSTAL_CODE", nullable = false)
 	private String postalCode;
-
-	// relacja OneToOne dwustronna do PatientEntity
-	@OneToOne(mappedBy = "addressEntity")
-	private PatientEntity patientEntity;
+	@OneToOne(mappedBy = "patientAddress") // relacja OneToOne dwukierunkowa do PatientEntity
+	private PatientEntity patientEntityForAddress;
+	@OneToOne(mappedBy = "doctorAddress")  // relacja OneToOne dwukierunkowa do DoctorEntity
+	private DoctorEntity doctorEntityForAddress;
 
 	public Long getId() {
 		return id;
