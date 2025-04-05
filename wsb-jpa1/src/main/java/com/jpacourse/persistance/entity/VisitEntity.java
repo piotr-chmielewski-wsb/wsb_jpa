@@ -57,4 +57,7 @@ public class VisitEntity {
 		this.time = time;
 	}
 
+	public DoctorEntity getDoctorEntityForVisits() {
+		return doctorEntityForVisits;
+	}
 }

@@ -1,7 +1,13 @@
 package com.jpacourse.dto;
 
+import com.jpacourse.persistance.entity.VisitEntity;
+
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+
 
 public class PatientTO implements Serializable {
     private Long id;
@@ -11,6 +17,35 @@ public class PatientTO implements Serializable {
     private String email;
     private String patientNumber;
     private LocalDate dateOfBirth;
+    private Collection<VisitInformations> visitInformations = new ArrayList<>();
+
+
+    public static class VisitInformations implements Serializable {
+        private LocalDateTime time;
+        private String doctorFirstName;
+        private String doctorLastName;
+
+        public LocalDateTime getTime() {
+            return time;
+        }
+        public void setTime(LocalDateTime time) {
+            this.time = time;
+        }
+        public String getDoctorFirstName() {
+            return doctorFirstName;
+        }
+        public void setDoctorFirstName(String doctorFirstName) {
+            this.doctorFirstName = doctorFirstName;
+        }
+        public String getDoctorLastName() {
+            return doctorLastName;
+        }
+        public void setDoctorLastName(String doctorLastName) {
+            this.doctorLastName = doctorLastName;
+        }
+    }
+
+
 
     public Long getId() {
         return id;
@@ -66,5 +101,21 @@ public class PatientTO implements Serializable {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Collection<VisitInformations> getVisitInformations() {
+        return visitInformations;
+    }
+    public void setVisitInformations(Collection<VisitEntity> patientVisits) {
+        Collection<VisitInformations> visitInfos = new ArrayList<>();
+        for( VisitEntity visit : patientVisits )
+        {
+            VisitInformations visitInfo = new VisitInformations();
+            visitInfo.time = visit.getTime();
+            visitInfo.doctorFirstName = visit.getDoctorEntityForVisits().getFirstName();
+            visitInfo.doctorLastName = visit.getDoctorEntityForVisits().getLastName();
+            visitInfos.add(visitInfo);
+        }
+        this.visitInformations = visitInfos;
     }
 }

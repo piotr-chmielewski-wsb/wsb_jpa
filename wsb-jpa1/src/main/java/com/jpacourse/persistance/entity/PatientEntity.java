@@ -1,6 +1,7 @@
 package com.jpacourse.persistance.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import jakarta.persistence.*;
@@ -25,7 +26,7 @@ public class PatientEntity {
 	@Column(name = "DATE_OF_BIRTH",nullable = false)
 	private LocalDate dateOfBirth;
 	@OneToOne(cascade = CascadeType.ALL,
-			  fetch = FetchType.LAZY,
+			  fetch = FetchType.EAGER,
 			  optional = false)
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "id")
 	private AddressEntity patientAddress; // relacja OneToOne dwukierunkowa do AddressEntity
@@ -86,6 +87,14 @@ public class PatientEntity {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Collection<VisitEntity> getPatientVisits() {
+		return patientVisits;
+	}
+
+	public void setPatientVisits(Collection<VisitEntity> patientVisits) {
+		this.patientVisits = patientVisits;
 	}
 
 }

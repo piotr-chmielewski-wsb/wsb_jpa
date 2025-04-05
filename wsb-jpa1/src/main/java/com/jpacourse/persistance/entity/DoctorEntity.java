@@ -27,7 +27,7 @@ public class DoctorEntity {
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 	@OneToOne (cascade = CascadeType.ALL,
-			   fetch = FetchType.LAZY,
+			   fetch = FetchType.EAGER,
 			   optional = false)
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "id") // relacja OneToOne dwukierunkowa DoctorEntity z AddressEntity
 	private AddressEntity doctorAddress;
