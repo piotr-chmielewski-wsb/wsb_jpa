@@ -24,9 +24,9 @@ public class PatientEntity {
 	private String patientNumber;
 	@Column(name = "DATE_OF_BIRTH",nullable = false)
 	private LocalDate dateOfBirth;
-	@OneToOne(cascade = CascadeType.ALL,
+	@OneToOne(cascade = CascadeType.REMOVE,
 			  fetch = FetchType.EAGER,
-			  optional = false)
+			  optional = true)
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "id")
 	private AddressEntity patientAddress; // relacja OneToOne dwukierunkowa do AddressEntity
 	@OneToMany(mappedBy = "patientEntityForVisits", cascade = CascadeType.REMOVE, orphanRemoval = true)

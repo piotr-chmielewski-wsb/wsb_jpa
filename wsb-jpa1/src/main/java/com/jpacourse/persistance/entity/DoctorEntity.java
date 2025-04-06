@@ -28,10 +28,10 @@ public class DoctorEntity {
 	private Specialization specialization;
 	@OneToOne (cascade = CascadeType.ALL,
 			   fetch = FetchType.EAGER,
-			   optional = false)
+			   optional = true)
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "id") // relacja OneToOne dwukierunkowa DoctorEntity z AddressEntity
 	private AddressEntity doctorAddress;
-	@OneToMany(mappedBy = "doctorEntityForVisits", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "doctorEntityForVisits", cascade = CascadeType.REMOVE)
 	private Collection<VisitEntity> doctorVisits;
 
 	public Long getId() {

@@ -17,20 +17,18 @@ public class VisitEntity {
 	@Column(name = "TIME",nullable = false)
 	private LocalDateTime time;
 	@ManyToOne(
-			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER,
-			optional = false
+			optional = true
 	)
 	@JoinColumn(name = "PATIENT_ID", referencedColumnName = "id") // relacja ManyToOne dwukierunkowa VisitEntity do PatientEntity
 	private PatientEntity patientEntityForVisits;
 	@ManyToOne (
-			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER,
-			optional = false
+			optional = true
 	)
 	@JoinColumn(name = "DOCTOR_ID", referencedColumnName = "id")
 	private DoctorEntity doctorEntityForVisits;
-	@OneToMany(mappedBy = "visitEntityforMedicalTreatment")
+	@OneToMany(mappedBy = "visitEntityforMedicalTreatment", cascade = CascadeType.REMOVE)
 	private Collection<MedicalTreatmentEntity> medicalTreatmentEntityList;
 
 	public Long getId() {

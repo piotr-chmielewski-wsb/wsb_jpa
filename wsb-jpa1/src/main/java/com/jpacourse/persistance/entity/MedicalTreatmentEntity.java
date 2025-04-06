@@ -17,9 +17,8 @@ public class MedicalTreatmentEntity {
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 	@ManyToOne(
-			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER,
-			optional = false
+			optional = true
 	)
 	@JoinColumn(name = "VISIT_ID", referencedColumnName = "id") // relacja ManyToOne dwukierunkowa MedicalTreatmentEntity do VisitEntity
 	private VisitEntity visitEntityforMedicalTreatment;
