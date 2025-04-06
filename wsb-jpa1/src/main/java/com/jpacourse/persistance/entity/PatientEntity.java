@@ -1,7 +1,6 @@
 package com.jpacourse.persistance.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 
 import jakarta.persistence.*;
@@ -32,6 +31,8 @@ public class PatientEntity {
 	private AddressEntity patientAddress; // relacja OneToOne dwukierunkowa do AddressEntity
 	@OneToMany(mappedBy = "patientEntityForVisits")
 	private Collection<VisitEntity> patientVisits;
+	@Column(name = "IS_ACTIVE", nullable = false)
+	private Boolean isActive;
 
 	public Long getId() {
 		return id;
@@ -97,4 +98,11 @@ public class PatientEntity {
 		this.patientVisits = patientVisits;
 	}
 
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 }

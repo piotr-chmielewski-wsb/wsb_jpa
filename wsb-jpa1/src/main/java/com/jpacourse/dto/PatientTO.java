@@ -19,6 +19,7 @@ public class PatientTO implements Serializable {
     private String email;
     private String patientNumber;
     private LocalDate dateOfBirth;
+    private Boolean isActive;
     private Collection<CompletedVisits> completedVisits = new ArrayList<>();
 
 
@@ -116,6 +117,14 @@ public class PatientTO implements Serializable {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public Collection<CompletedVisits> getCompletedVisits() {

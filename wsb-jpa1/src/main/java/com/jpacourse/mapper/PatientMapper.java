@@ -19,6 +19,7 @@ public final class PatientMapper
         patientTO.setEmail(patientEntity.getEmail());
         patientTO.setPatientNumber(String.valueOf(patientEntity.getPatientNumber()));
         patientTO.setDateOfBirth(patientEntity.getDateOfBirth());
+        patientTO.setIsActive(patientEntity.getIsActive());
         patientTO.setCompletedVisits(patientEntity.getPatientVisits());
         return patientTO;
     }
@@ -36,6 +37,7 @@ public final class PatientMapper
         patientEntity.setEmail(patientTO.getEmail());
         patientEntity.setPatientNumber(patientTO.getPatientNumber());
         patientEntity.setDateOfBirth(patientTO.getDateOfBirth());
+        patientEntity.setIsActive(patientTO.getIsActive());
         return patientEntity;
     }
 }

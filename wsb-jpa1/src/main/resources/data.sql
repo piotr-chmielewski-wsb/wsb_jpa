@@ -15,10 +15,10 @@ values (2, 2, '2', 'testmail2', 'Janusz', 'Tracz', '22212', 'OCULIST');
 
 
 --PATIENTS
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id)
-values (1, 'Piotr', 'Kowalski', '123456789', 'asd@sd.pl', '1542343', '2001-12-12', 1);
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id)
-values (2, 'Marcin', 'Nowak', '123456780', 'asd@sd.pl', '1542344', '1960-12-12', 2);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active)
+values (1, 'Piotr', 'Kowalski', '123456789', 'asd@sd.pl', '1542343', '2001-12-12', 1, true);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active)
+values (2, 'Marcin', 'Nowak', '123456780', 'asd@sd.pl', '1542344', '1960-12-12', 2, false);
 
 
 --VISITS
