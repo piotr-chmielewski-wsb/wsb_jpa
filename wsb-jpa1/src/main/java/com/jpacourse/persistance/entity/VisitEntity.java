@@ -60,4 +60,8 @@ public class VisitEntity {
 	public DoctorEntity getDoctorEntityForVisits() {
 		return doctorEntityForVisits;
 	}
+
+	public Collection<MedicalTreatmentEntity> getMedicalTreatmentEntityList() {
+		return medicalTreatmentEntityList;
+	}
 }

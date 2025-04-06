@@ -1,6 +1,8 @@
 package com.jpacourse.dto;
 
+import com.jpacourse.persistance.entity.MedicalTreatmentEntity;
 import com.jpacourse.persistance.entity.VisitEntity;
+import com.jpacourse.persistance.enums.TreatmentType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -17,34 +19,47 @@ public class PatientTO implements Serializable {
     private String email;
     private String patientNumber;
     private LocalDate dateOfBirth;
-    private Collection<VisitInformations> visitInformations = new ArrayList<>();
+    private Collection<CompletedVisits> completedVisits = new ArrayList<>();
 
 
-    public static class VisitInformations implements Serializable {
+    public static class CompletedVisits implements Serializable {
         private LocalDateTime time;
         private String doctorFirstName;
         private String doctorLastName;
+        private Collection<TreatmentType> typesOfTreatment = new ArrayList<>();
 
         public LocalDateTime getTime() {
             return time;
         }
+
         public void setTime(LocalDateTime time) {
             this.time = time;
         }
+
         public String getDoctorFirstName() {
             return doctorFirstName;
         }
+
         public void setDoctorFirstName(String doctorFirstName) {
             this.doctorFirstName = doctorFirstName;
         }
+
         public String getDoctorLastName() {
             return doctorLastName;
         }
+
         public void setDoctorLastName(String doctorLastName) {
             this.doctorLastName = doctorLastName;
         }
-    }
 
+        public Collection<TreatmentType> getTypesOfTreatment() {
+            return typesOfTreatment;
+        }
+
+        public void setTypesOfTreatment(Collection<TreatmentType> typesOfTreatment) {
+            this.typesOfTreatment = typesOfTreatment;
+        }
+    }
 
 
     public Long getId() {
@@ -103,19 +118,27 @@ public class PatientTO implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Collection<VisitInformations> getVisitInformations() {
-        return visitInformations;
+    public Collection<CompletedVisits> getCompletedVisits() {
+        return completedVisits;
     }
-    public void setVisitInformations(Collection<VisitEntity> patientVisits) {
-        Collection<VisitInformations> visitInfos = new ArrayList<>();
-        for( VisitEntity visit : patientVisits )
-        {
-            VisitInformations visitInfo = new VisitInformations();
-            visitInfo.time = visit.getTime();
-            visitInfo.doctorFirstName = visit.getDoctorEntityForVisits().getFirstName();
-            visitInfo.doctorLastName = visit.getDoctorEntityForVisits().getLastName();
-            visitInfos.add(visitInfo);
+
+    public void setCompletedVisits(Collection<VisitEntity> patientVisits) {
+        Collection<CompletedVisits> visitInfos = new ArrayList<>();
+        for (VisitEntity visit : patientVisits) {
+            if (visit.getTime().isBefore(LocalDateTime.now())) {
+                CompletedVisits visitInfo = new CompletedVisits();
+                visitInfo.time = visit.getTime();
+                visitInfo.doctorFirstName = visit.getDoctorEntityForVisits().getFirstName();
+                visitInfo.doctorLastName = visit.getDoctorEntityForVisits().getLastName();
+                for ( MedicalTreatmentEntity medicalTreatment : visit.getMedicalTreatmentEntityList() ) {
+                    visitInfo.typesOfTreatment.add(medicalTreatment.getType());
+                }
+                visitInfos.add(visitInfo);
+            }
         }
-        this.visitInformations = visitInfos;
+        this.completedVisits = visitInfos;
     }
+
+
+
 }

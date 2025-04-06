@@ -19,7 +19,7 @@ public final class PatientMapper
         patientTO.setEmail(patientEntity.getEmail());
         patientTO.setPatientNumber(String.valueOf(patientEntity.getPatientNumber()));
         patientTO.setDateOfBirth(patientEntity.getDateOfBirth());
-        patientTO.setVisitInformations(patientEntity.getPatientVisits());
+        patientTO.setCompletedVisits(patientEntity.getPatientVisits());
         return patientTO;
     }
     public static PatientEntity mapToEntity(final PatientTO patientTO)
