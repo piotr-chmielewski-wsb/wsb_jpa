@@ -2,21 +2,21 @@
 
 --ADDRESSES
 insert into address (id, address_line_1, address_line_2, city, postal_code)
-values (1, 'xx', 'yy', 'city', '60-400');
+values (901, 'xx', 'yy', 'city', '60-400');
 insert into address (id, address_line_1, address_line_2, city, postal_code)
 values (2, 'xx', 'yy', 'city', '60-400');
 
 
 --DOCTORS
 insert into doctor (address_id, id, doctor_number, email, first_name, last_name, telephone_number, specialization)
-values (1, 1, '1', 'testmail', 'Bonus', 'BGC', '2222', 'OCULIST');
+values (901, 1, '1', 'testmail', 'Bonus', 'BGC', '2222', 'OCULIST');
 insert into doctor (address_id, id, doctor_number, email, first_name, last_name, telephone_number, specialization)
 values (2, 2, '2', 'testmail2', 'Janusz', 'Tracz', '22212', 'OCULIST');
 
 
 --PATIENTS
 insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active)
-values (1, 'Piotr', 'Kowalski', '123456789', 'asd@sd.pl', '1542343', '2001-12-12', 1, true);
+values (1, 'Piotr', 'Kowalski', '123456789', 'asd@sd.pl', '1542343', '2001-12-12', 901, true);
 insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active)
 values (2, 'Marcin', 'Nowak', '123456780', 'asd@sd.pl', '1542344', '1960-12-12', 2, false);
 

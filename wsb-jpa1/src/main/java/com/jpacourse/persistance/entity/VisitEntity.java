@@ -62,4 +62,12 @@ public class VisitEntity {
 	public Collection<MedicalTreatmentEntity> getMedicalTreatmentEntityList() {
 		return medicalTreatmentEntityList;
 	}
+
+	public void setPatientEntityForVisits(PatientEntity patientEntityForVisits) {
+		this.patientEntityForVisits = patientEntityForVisits;
+	}
+
+	public void setDoctorEntityForVisits(DoctorEntity doctorEntityForVisits) {
+		this.doctorEntityForVisits = doctorEntityForVisits;
+	}
 }
