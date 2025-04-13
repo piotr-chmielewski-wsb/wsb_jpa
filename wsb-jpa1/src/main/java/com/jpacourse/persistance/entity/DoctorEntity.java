@@ -31,7 +31,7 @@ public class DoctorEntity {
 			   optional = true)
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "id") // relacja OneToOne dwukierunkowa DoctorEntity z AddressEntity
 	private AddressEntity doctorAddress;
-	@OneToMany(mappedBy = "doctorEntityForVisits", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "doctorEntityForVisits", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<VisitEntity> doctorVisits;
 
 	public Long getId() {

@@ -29,7 +29,7 @@ public class PatientEntity {
 			  optional = true)
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "id")
 	private AddressEntity patientAddress; // relacja OneToOne dwukierunkowa do AddressEntity
-	@OneToMany(mappedBy = "patientEntityForVisits", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy = "patientEntityForVisits", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<VisitEntity> patientVisits;
 	@Column(name = "IS_ACTIVE", nullable = false)
 	private Boolean isActive;
