@@ -17,13 +17,13 @@ public class VisitEntity {
 	@Column(name = "TIME",nullable = false)
 	private LocalDateTime time;
 	@ManyToOne(
-			fetch = FetchType.EAGER,
+			fetch = FetchType.LAZY,
 			optional = true
 	)
 	@JoinColumn(name = "PATIENT_ID", referencedColumnName = "id") // relacja ManyToOne dwukierunkowa VisitEntity do PatientEntity
 	private PatientEntity patientEntityForVisits;
 	@ManyToOne (
-			fetch = FetchType.EAGER,
+			fetch = FetchType.LAZY,
 			optional = true
 	)
 	@JoinColumn(name = "DOCTOR_ID", referencedColumnName = "id")
@@ -57,6 +57,9 @@ public class VisitEntity {
 
 	public DoctorEntity getDoctorEntityForVisits() {
 		return doctorEntityForVisits;
+	}
+	public void setDoctorEntityForVisits(DoctorEntity doctorEntityForVisits) {
+		this.doctorEntityForVisits = doctorEntityForVisits;
 	}
 
 	public Collection<MedicalTreatmentEntity> getMedicalTreatmentEntityList() {
