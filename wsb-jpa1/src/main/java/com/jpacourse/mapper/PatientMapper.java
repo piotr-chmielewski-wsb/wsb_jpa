@@ -3,6 +3,9 @@ package com.jpacourse.mapper;
 import com.jpacourse.dto.PatientTO;
 import com.jpacourse.persistance.entity.PatientEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class PatientMapper
 {
     public static PatientTO mapToTO(final PatientEntity patientEntity)
@@ -39,5 +42,17 @@ public final class PatientMapper
         patientEntity.setDateOfBirth(patientTO.getDateOfBirth());
         patientEntity.setIsActive(patientTO.getIsActive());
         return patientEntity;
+    }
+    public static List<PatientTO> mapToTOList(final List<PatientEntity> patientEntities)
+    {
+        if (patientEntities == null)
+        {
+            return null;
+        }
+        List<PatientTO> patientTOs = new ArrayList<PatientTO>();
+        for (PatientEntity patientEntity : patientEntities) {
+            patientTOs.add(mapToTO(patientEntity));
+        }
+        return patientTOs;
     }
 }
