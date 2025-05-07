@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "PATIENT")
@@ -22,6 +24,11 @@ public class PatientEntity {
 	private String email;
 	@Column(name = "PATIENT_NUMBER",nullable = false)
 	private String patientNumber;
+
+	@Version
+	@Column(nullable = false)
+	private Integer version;
+
 	@Column(name = "DATE_OF_BIRTH",nullable = false)
 	private LocalDate dateOfBirth;
 	@OneToOne(cascade = CascadeType.REMOVE,
@@ -29,7 +36,8 @@ public class PatientEntity {
 			  optional = true)
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "id")
 	private AddressEntity patientAddress; // relacja OneToOne dwukierunkowa do AddressEntity
-	@OneToMany(mappedBy = "patientEntityForVisits", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "patientEntityForVisits", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<VisitEntity> patientVisits;
 	@Column(name = "IS_ACTIVE", nullable = false)
 	private Boolean isActive;

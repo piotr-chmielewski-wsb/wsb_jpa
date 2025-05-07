@@ -17,12 +17,12 @@ values (2, 2, '2', 'testmail2', 'Janusz', 'Tracz', '22212', 'OCULIST');
 
 
 -- --PATIENTS
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active)
-values (1, 'Piotr', 'Kowalski', '123456789', 'asd@sd.pl', '1542343', '2001-12-12', 1, true);
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active)
-values (2, 'Marcin', 'Nowak', '123456780', 'asd@sd.pl', '1542344', '1960-12-12', 2, false);
-insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active)
-values (3, 'Janusz', 'Nowak', '123433234', 'asd@sd.pl', '1542345', '1962-08-12', 3, true);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active, version)
+values (1, 'Piotr', 'Kowalski', '123456789', 'asd@sd.pl', '1542343', '2001-12-12', 1, true, 0);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active, version)
+values (2, 'Marcin', 'Nowak', '123456780', 'asd@sd.pl', '1542344', '1960-12-12', 2, false, 0);
+insert into patient (id, first_name, last_name, telephone_number, email, patient_number, date_of_birth, address_id, is_active, version)
+values (3, 'Janusz', 'Nowak', '123433234', 'asd@sd.pl', '1542345', '1962-08-12', 3, true, 0);
 
 
 -- --VISITS
