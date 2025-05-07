@@ -61,4 +61,15 @@ public class PatientServiceTest {
         assertThat(doctorDao.findOne(2L)).isNotNull();
 
     }
+
+    @Transactional
+    @Test
+    public void testShouldFindVisitByPatientId() {
+        // given
+        // when
+        Collection<VisitEntity> visitEntities = patientService.findVisitsByPatientId(1L);
+        // then
+        assertThat(visitEntities).isNotNull();
+        assertThat(visitEntities.size()).isEqualTo(2);
+    }
 }
